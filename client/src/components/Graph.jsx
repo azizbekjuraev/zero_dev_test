@@ -20,7 +20,7 @@ export default function Graph() {
       datasets: [
         {
           label: "My First Dataset",
-          data: [300, 50, 100],
+          data: [300, 100, 50],
           backgroundColor: [
             "rgb(255, 99, 132)",
             "rgb(54, 162, 235)",
@@ -45,7 +45,7 @@ export default function Graph() {
         <div className="chart relative">
           <Doughnut {...config}></Doughnut>
           <StyledChartTitle className="mb-4 font-bold title">
-            Total <span className="block text-3xl text-emerald-400">${0}</span>
+            Общий <span className="block text-3xl text-emerald-400">${0}</span>
           </StyledChartTitle>
         </div>
         <div className="flex flex-col py-10 gap-4">

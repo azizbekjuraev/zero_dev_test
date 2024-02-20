@@ -1,6 +1,5 @@
 import React from "react";
 import "boxicons";
-import { BoxIconElement } from "boxicons";
 
 export default function List() {
   const obj = [

@@ -11,6 +11,9 @@ export const apiSlice = createApi({
     getLabels: builder.query({
       query: () => "/api/labels",
     }),
+    getTransaction: builder.query({
+      query: () => "/api/transaction",
+    }),
     addTransaction: builder.mutation({
       query: (initialParameter) => ({
         url: "/api/transaction",

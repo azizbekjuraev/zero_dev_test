@@ -2,7 +2,7 @@ import "boxicons";
 import { default as api } from "../store/apiSlice";
 
 export default function List() {
-  const res = api.useGetLabelsQuery();
+  const res = api.useGetTransactionQuery();
   console.log(res.data);
 
   return (

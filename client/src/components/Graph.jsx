@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Chart, ArcElement } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Labels from "./Labels";
+import { default as api } from "../store/apiSlice";
+import { chart_Data, get_Total } from "../helper/helper";
 
 Chart.register(ArcElement);
 
@@ -15,37 +17,30 @@ const StyledChartTitle = styled.h3`
 `;
 
 export default function Graph() {
-  const config = {
-    data: {
-      datasets: [
-        {
-          label: "My First Dataset",
-          data: [300, 100, 50],
-          backgroundColor: [
-            "rgb(255, 99, 132)",
-            "rgb(54, 162, 235)",
-            "rgb(255, 205, 86)",
-          ],
-          hoverOffset: 4,
-          borderRadius: 30,
-          spacing: 10,
-        },
-      ],
-    },
-    options: {
-      cutout: 115,
-    },
-  };
+  const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
+  let graphData;
+  let totalAmount;
 
-  console.log(typeof config.data.datasets[0].backgroundColor);
+  if (isFetching) {
+    graphData = <div>Загрузка...</div>;
+  } else if (isSuccess) {
+    console.log(get_Total(data));
+    totalAmount = get_Total(data);
+    graphData = <Doughnut {...chart_Data(data)}></Doughnut>;
+  } else if (isError) {
+    graphData = <div>Что-то пошло не так...</div>;
+  }
 
   return (
     <div className="flex justify-content max-w-xs mx-auto">
       <div className="item ">
         <div className="chart relative">
-          <Doughnut {...config}></Doughnut>
+          {graphData}
           <StyledChartTitle className="mb-4 font-bold title">
-            Общий <span className="block text-3xl text-emerald-400">${0}</span>
+            Общий{" "}
+            <span className="block text-3xl text-emerald-400">
+              ${totalAmount}
+            </span>
           </StyledChartTitle>
         </div>
         <div className="flex flex-col py-10 gap-4">

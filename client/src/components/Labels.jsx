@@ -1,6 +1,7 @@
 import { default as api } from "../store/apiSlice";
 import { getLabels } from "../helper/helper";
 import { round } from "lodash";
+import "boxicons";
 
 export default function Labels() {
   const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
@@ -9,8 +10,6 @@ export default function Labels() {
   if (isFetching) {
     Transactions = <div>Загрузка...</div>;
   } else if (isSuccess) {
-    console.log(getLabels(data, "type"));
-
     Transactions = getLabels(data, "type").map((v, i) => (
       <LabelComponent key={i} data={v}></LabelComponent>
     ));
@@ -31,7 +30,15 @@ function LabelComponent({ data }) {
           className="w-2 h-2 rounded py-3"
           style={{ background: color ?? "black" }}
         ></div>
-        <h3 className="text-md">{type ?? ""}</h3>
+        <h3 className="text-md flex items-center">
+          {type ?? ""}
+          <box-icon
+            animation="tada"
+            color="rgb(161 161 170)"
+            name="chevron-right"
+            type="solid"
+          ></box-icon>
+        </h3>
       </div>
       <h3 className="font-bold">{round(percent) ?? 0}%</h3>
     </div>

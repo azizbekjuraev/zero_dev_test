@@ -28,20 +28,25 @@ const StyledSelectOption = styled.select`
   ${commonStyles}
 `;
 
-function getInputData(e) {
-  console.log(e.target.value);
-}
-
 export default function Form() {
-  const { register, handleSubmit, resetField } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [addTransaction] = api.useAddTransactionMutation();
 
   const onSubmit = async (data) => {
-    console.log(data);
-    if (!data) return {};
-    await addTransaction(data).unwrap();
-    resetField("name");
-    resetField("amount");
+    const trimmedName = data.name.trim();
+    const trimmedAmount = data.amount.trim();
+    if (!data) return;
+
+    if (!trimmedName || !trimmedAmount) return;
+    console.log(trimmedName);
+
+    await addTransaction({
+      name: trimmedName,
+      type: data.type,
+      amount: trimmedAmount,
+    }).unwrap();
+
+    reset();
   };
 
   return (
@@ -51,7 +56,7 @@ export default function Form() {
         <div className="grid gap-4">
           <div className="input-group">
             <StyledFormInput
-              {...register("name")}
+              {...register("name", { required: true, pattern: /\S/ })}
               type="text"
               placeholder="Зарплата, Аренда дома"
               className="form-input"
@@ -66,11 +71,10 @@ export default function Form() {
           </StyledSelectOption>
           <div className="input-group">
             <StyledFormInput
-              {...register("amount")}
+              {...register("amount", { required: true, pattern: /\S/ })}
               type="amount"
               placeholder="Cумма"
               className="form-input"
-              onChange={getInputData}
             />
           </div>
           <div className="submit-btn">

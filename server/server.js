@@ -12,6 +12,10 @@ const con = require("./db/connection");
 
 app.use(require("./routes/route"));
 
+app.get("/", (req, res) => {
+  res.json("hello");
+});
+
 con
   .then((db) => {
     if (!db) return process.exit(1);

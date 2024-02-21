@@ -5,16 +5,17 @@ import List from "./List";
 import { default as api } from "../store/apiSlice";
 
 const commonStyles = `
-  width: 100%;
-  margin-top: 0.25rem;
-  display: block;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  background-color: white;
-  border: 1px solid #e2e8f0;
-  font-size: 1rem; 
+width: 100%;
+margin-top: 0.25rem;
+display: block;
+padding-top: 0.5rem;
+padding-bottom: 0.5rem;
+padding-left: 0.75rem;
+padding-right: 0.75rem;
+background-color: white;
+border: 1px solid #e2e8f0;
+font-size: 1rem; 
+border-radius: 0%;
   &:focus {
     outline: none;
   }

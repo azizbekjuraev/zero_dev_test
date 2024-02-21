@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(
   cors({
-    origin: ["https://zero-dev-test-mijv.vercel.app/"],
+    origin: ["https://zero-dev-test.vercel.app/"],
     methods: ["POST", "GET", "DELETE", "PUT"],
     credentials: true,
   })

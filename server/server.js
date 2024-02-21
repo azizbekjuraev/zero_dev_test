@@ -6,6 +6,13 @@ require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 
 app.use(cors());
+app.use(
+  cors({
+    origin: ["https://deploy-mern-frontend.vercel.app"],
+    methods: ["POST", "GET", "DELETE", "PUT"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const con = require("./db/connection");

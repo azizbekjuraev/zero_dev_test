@@ -12,4 +12,6 @@ routes
   .get(controller.get_Transaction)
   .delete(controller.delete_Transaction);
 
+routes.route("/api/labels").get(controller.get_Labels);
+
 module.exports = routes;

@@ -1,26 +1,14 @@
-import React from "react";
 import "boxicons";
+import { default as api } from "../store/apiSlice";
 
 export default function List() {
-  const obj = [
-    {
-      name: "Экономия",
-      color: "rgb(255, 99, 132)",
-    },
-    {
-      name: "Доход",
-      color: "rgb(54, 162, 235)",
-    },
-    {
-      name: "Расход",
-      color: "rgb(255, 205, 86)",
-    },
-  ];
+  const res = api.useGetLabelsQuery();
+  console.log(res.data);
 
   return (
     <div className="flex flex-col py-6 gap-3">
       <h1 className="py-4 font-bold text-xl">История</h1>
-      {obj.map((v, i) => (
+      {res.data?.map((v, i) => (
         <Transaction category={v} key={i}></Transaction>
       ))}
     </div>
@@ -28,7 +16,7 @@ export default function List() {
 }
 
 function Transaction({ category }) {
-  const { name, color } = category;
+  const { name, color, amount } = category;
   if (!category) return <></>;
   return (
     <div
@@ -39,6 +27,7 @@ function Transaction({ category }) {
         <box-icon size="15px" name="trash-alt" type="solid"></box-icon>
       </button>
       <span className="block w-full">{name}</span>
+      <span className="block w-full">{amount}$</span>
     </div>
   );
 }

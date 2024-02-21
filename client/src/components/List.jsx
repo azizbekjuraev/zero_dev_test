@@ -31,7 +31,7 @@ export default function List() {
 }
 
 function Transaction({ category, handle }) {
-  const { name, color, _id } = category;
+  const { name, color, _id, amount } = category;
   if (!category) return <></>;
   return (
     <div
@@ -47,6 +47,7 @@ function Transaction({ category, handle }) {
         ></box-icon>
       </button>
       <span className="block w-full">{name}</span>
+      <span className="block w-full text-zinc-500">${amount}</span>
     </div>
   );
 }

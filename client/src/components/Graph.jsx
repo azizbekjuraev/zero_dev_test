@@ -24,7 +24,6 @@ export default function Graph() {
   if (isFetching) {
     graphData = <div>Загрузка...</div>;
   } else if (isSuccess) {
-    console.log(get_Total(data));
     totalAmount = get_Total(data);
     graphData = <Doughnut {...chart_Data(data)}></Doughnut>;
   } else if (isError) {
@@ -39,7 +38,7 @@ export default function Graph() {
           <StyledChartTitle className="mb-4 font-bold title">
             Общий{" "}
             <span className="block text-3xl text-emerald-400">
-              ${totalAmount}
+              ${totalAmount ?? 0}
             </span>
           </StyledChartTitle>
         </div>

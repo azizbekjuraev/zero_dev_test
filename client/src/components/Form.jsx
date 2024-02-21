@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import List from "./List";
+import { default as api } from "../store/apiSlice";
 
 const commonStyles = `
   width: 100%;
@@ -33,7 +34,13 @@ function getInputData(e) {
 
 export default function Form() {
   const { register, handleSubmit, resetField } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const [addTransaction] = api.useAddTransactionMutation();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    if (!data) return {};
+    await addTransaction(data).unwrap();
+  };
 
   return (
     <div className="form max-w-sm mx-auto w-96">
@@ -57,14 +64,14 @@ export default function Form() {
           </StyledSelectOption>
           <div className="input-group">
             <StyledFormInput
-              {...register("amout")}
-              type="text"
+              {...register("amount")}
+              type="amount"
               placeholder="Cумма"
               className="form-input"
               onChange={getInputData}
             />
           </div>
-          <div className="submit-btn" {...resetField}>
+          <div className="submit-btn">
             <button className="border py-2 text-white bg-indigo-500 w-full">
               Добавить
             </button>

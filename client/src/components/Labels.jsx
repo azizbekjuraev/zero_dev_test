@@ -2,19 +2,19 @@ import { default as api } from "../store/apiSlice";
 
 export default function Labels() {
   const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
-  let Transaction;
+  let Transactions;
 
   if (isFetching) {
-    Transaction = <div>Загрузка...</div>;
+    Transactions = <div>Загрузка...</div>;
   } else if (isSuccess) {
-    Transaction = data?.map((v, i) => (
+    Transactions = data?.map((v, i) => (
       <LabelComponent key={i} data={v}></LabelComponent>
     ));
   } else if (isError) {
-    Transaction = <div>Что-то пошло не так...</div>;
+    Transactions = <div>Что-то пошло не так...</div>;
   }
 
-  return <>{Transaction}</>;
+  return <>{Transactions}</>;
 }
 
 function LabelComponent({ data }) {

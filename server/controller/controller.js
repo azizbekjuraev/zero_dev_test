@@ -30,11 +30,11 @@ async function get_Categories(req, res) {
 
 async function create_Transaction(req, res) {
   try {
-    const { name, type, amout } = req.body;
+    const { name, type, amount } = req.body;
     const createTransaction = new model.Transaction({
       name: name,
       type: type,
-      amout: amout,
+      amount: amount,
       date: new Date(),
     });
 

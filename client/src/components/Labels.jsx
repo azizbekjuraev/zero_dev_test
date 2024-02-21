@@ -1,4 +1,6 @@
 import { default as api } from "../store/apiSlice";
+import { getLabels } from "../helper/helper";
+import { round } from "lodash";
 
 export default function Labels() {
   const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
@@ -7,7 +9,9 @@ export default function Labels() {
   if (isFetching) {
     Transactions = <div>Загрузка...</div>;
   } else if (isSuccess) {
-    Transactions = data?.map((v, i) => (
+    console.log(getLabels(data, "type"));
+
+    Transactions = getLabels(data, "type").map((v, i) => (
       <LabelComponent key={i} data={v}></LabelComponent>
     ));
   } else if (isError) {
@@ -29,7 +33,7 @@ function LabelComponent({ data }) {
         ></div>
         <h3 className="text-md">{type ?? ""}</h3>
       </div>
-      <h3 className="font-bold">{percent ?? 0}%</h3>
+      <h3 className="font-bold">{round(percent) ?? 0}%</h3>
     </div>
   );
 }

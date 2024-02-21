@@ -40,6 +40,8 @@ export default function Form() {
     console.log(data);
     if (!data) return {};
     await addTransaction(data).unwrap();
+    resetField("name");
+    resetField("amount");
   };
 
   return (

@@ -3,14 +3,20 @@ import { default as api } from "../store/apiSlice";
 
 export default function List() {
   const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
+  const [deleteTransaction] = api.useDeleteTransactionMutation();
   let Transactions;
+
+  const handleDelete = (e) => {
+    if (!e.target.dataset.id) return 0;
+    console.log(e.target.dataset.id);
+    deleteTransaction({ _id: e.target.dataset.id });
+  };
 
   if (isFetching) {
     Transactions = <div>Загрузка...</div>;
   } else if (isSuccess) {
-    console.log(data);
     Transactions = data?.map((v, i) => (
-      <Transaction key={i} category={v}></Transaction>
+      <Transaction key={i} category={v} handle={handleDelete}></Transaction>
     ));
   } else if (isError) {
     Transactions = <div>Что-то пошло не так...</div>;
@@ -24,16 +30,21 @@ export default function List() {
   );
 }
 
-function Transaction({ category }) {
-  const { name, color } = category;
+function Transaction({ category, handle }) {
+  const { name, color, _id } = category;
   if (!category) return <></>;
   return (
     <div
       className="item flex justify-center bg-gray-50 py-2"
       style={{ borderRight: `8px solid ${color ?? "black"}` }}
     >
-      <button className="px-3">
-        <box-icon size="15px" name="trash-alt" type="solid"></box-icon>
+      <button className="px-3" onClick={handle}>
+        <box-icon
+          data-id={_id ?? ""}
+          size="15px"
+          name="trash-alt"
+          type="solid"
+        ></box-icon>
       </button>
       <span className="block w-full">{name}</span>
     </div>

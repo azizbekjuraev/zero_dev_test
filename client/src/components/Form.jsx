@@ -25,8 +25,8 @@ const InputStyle = styled.select`
   width: 100%;
   margin-top: 0.25rem;
   display: block;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   background-color: white;

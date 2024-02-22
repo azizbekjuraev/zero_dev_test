@@ -25,8 +25,6 @@ const InputStyle = styled.select`
   width: 100%;
   margin-top: 0.25rem;
   display: block;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   background-color: white;
@@ -80,7 +78,7 @@ export default function Form() {
               className="form-input"
             />
           </div>
-          <InputStyle {...register("type")} className="form-input">
+          <InputStyle {...register("type")} className="py-2">
             <option value="Доход" defaultValue>
               Доход
             </option>

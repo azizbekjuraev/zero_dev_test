@@ -21,28 +21,13 @@ border-radius: 0%;
   }
 `;
 
-const InputStyle = styled.select`
-  width: 100%;
-  margin-top: 0.25rem;
-  display: block;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  background-color: white;
-  border: 1px solid #e2e8f0;
-  font-size: 1rem;
-  border-radius: 0%;
-  &:focus {
-    outline: none;
-  }
-`;
-
 const StyledFormInput = styled.input`
   ${commonStyles}
 `;
 
-// const StyledSelectOption = styled.select`
-//   ${commonStyles}
-// `;
+const StyledSelectOption = styled.select`
+  ${commonStyles}
+`;
 
 export default function Form() {
   const { register, handleSubmit, reset } = useForm();
@@ -78,13 +63,13 @@ export default function Form() {
               className="form-input"
             />
           </div>
-          <InputStyle {...register("type")} className="py-2">
+          <StyledSelectOption {...register("type")} className="">
             <option value="Доход" defaultValue>
               Доход
             </option>
             <option value="Расход">Расход</option>
             <option value="Экономия">Экономия</option>
-          </InputStyle>
+          </StyledSelectOption>
           <div className="input-group">
             <StyledFormInput
               {...register("amount", { required: true, pattern: /\S/ })}

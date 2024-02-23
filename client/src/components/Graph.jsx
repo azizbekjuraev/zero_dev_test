@@ -36,7 +36,7 @@ export default function Graph() {
         <div className="chart relative">
           {graphData}
           <StyledChartTitle className="mb-4 font-bold title">
-            Общий{" "}
+            Общий
             <span className="block text-3xl text-emerald-400">
               ${totalAmount ?? 0}
             </span>

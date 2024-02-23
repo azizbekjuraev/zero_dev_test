@@ -1,6 +1,7 @@
 import { default as api } from "../store/apiSlice";
 import { getLabels } from "../helper/helper";
 import { round } from "lodash";
+import { Link } from "react-router-dom";
 import "boxicons";
 
 export default function Labels() {
@@ -30,15 +31,17 @@ function LabelComponent({ data }) {
           className="w-2 h-2 rounded py-3"
           style={{ background: color ?? "black" }}
         ></div>
-        <h3 className="text-md flex items-center">
-          {type ?? ""}
-          <box-icon
-            animation="tada"
-            color="rgb(161 161 170)"
-            name="chevron-right"
-            type="solid"
-          ></box-icon>
-        </h3>
+        <Link to={type}>
+          <h3 className="text-md flex items-center">
+            {type ?? ""}
+            <box-icon
+              animation="tada"
+              color="rgb(161 161 170)"
+              name="chevron-right"
+              type="solid"
+            ></box-icon>
+          </h3>
+        </Link>
       </div>
       <h3 className="font-bold">{round(percent) ?? 0}%</h3>
     </div>

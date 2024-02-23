@@ -53,3 +53,15 @@ export function chart_Data(transaction, custom) {
 export function get_Total(transaction) {
   return _.sum(getSum(transaction));
 }
+
+export function get_Expenses(transaction) {
+  return _.filter(transaction, { type: "Расход" });
+}
+
+export function get_Incomes(transaction) {
+  return _.filter(transaction, { type: "Доход" });
+}
+
+export function get_Savings(transaction) {
+  return _.filter(transaction, { type: "Экономия" });
+}
